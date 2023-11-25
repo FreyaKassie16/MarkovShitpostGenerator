@@ -45,8 +45,20 @@ def get_random_word():
     shitpost_words = ["banana", "noodle", "gibberish", "flibbertigibbet", "kerfuffle", "brouhaha", "malarkey"]
     return random.choice(shitpost_words)
 
-# Example usage:
-example_text = "The quick brown fox jumps over the lazy dog. The lazy dog barks loudly."
-markov_chain = build_markov_chain(example_text)
-generated_sentence = generate_sentence(markov_chain, length=8)
-print(generated_sentence)
+def get_user_input():
+    return input("Enter a sentence or text: ")
+
+def read_external_dataset(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return file.read()
+
+if __name__ == "__main__":
+    # Allow user to input text dynamically
+    example_text = get_user_input()
+
+    # Alternatively, you can read from an external dataset
+    # example_text = read_external_dataset('external_dataset.txt')
+
+    markov_chain = build_markov_chain(example_text)
+    generated_sentence = generate_sentence(markov_chain, length=15)   # Increase the length for more variety
+    print("Generated Sentence:", generated_sentence)
